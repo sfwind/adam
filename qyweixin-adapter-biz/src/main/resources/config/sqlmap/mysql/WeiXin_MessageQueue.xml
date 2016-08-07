@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="WeixinMessage">
+
+    <typeAlias alias="message"
+               type="com.dianping.ba.es.qyweixin.adapter.biz.domain.message.WeixinMessage"/>
+
+    <select id="queryMessageWaitingSend" resultClass="java.lang.String">
+		SELECT
+        <![CDATA[
+            distinct `Guid`
+        FROM WeiXin_MessageQueue
+        ]]>
+		WHERE `Status` = 0 Order By `Priority` ASC,`Id` ASC Limit 0,15
+	</select>
+
+    <select id="queryNormalPriorityMessageWaitingSend" resultClass="java.lang.String">
+		SELECT
+		<![CDATA[
+            distinct `Guid`
+        FROM WeiXin_MessageQueue
+        ]]>
+		WHERE `Status` = 0 and `Priority` != 0 Order By `Priority` ASC,`Id` ASC Limit 0,15
+	</select>
+
+    <select id="queryHighPriorityMessageWaitingSend" resultClass="java.lang.String">
+		SELECT
+		<![CDATA[
+            distinct `Guid`
+        FROM WeiXin_MessageQueue
+        ]]>
+		WHERE `Status` = 0 and `Priority` = 0 Order By `Id` ASC Limit 0,15
+	</select>
+
+    <update id="updateSendingMessage">
+		UPDATE WeiXin_MessageQueue SET
+        <![CDATA[
+            `Status` = 100
+		WHERE `Id` = #id#
+
+        ]]>
+    </update>
+
+    <insert id="insert">
+		INSERT INTO WeiXin_MessageQueue(
+        `AddTime`,
+        `UpdateTime`,
+        `EmployeeId`,
+        `Title`,
+        `Content`,
+        `Url`,
+        `PicUrl`,
+        `Status`,
+        `SendTime`,
+        `TryTimes`,
+        `AgentId`,
+        `IsSafe`,
+        `ErrorCode`,
+        `ErrorMsg`,
+        `MessageType`,
+        `IsMulti`,
+        `Guid`,
+        `Priority`
+		) VALUES (
+		NOW(),
+		NOW(),
+		#message.employeeId#,
+		#message.title#,
+		#message.content#,
+		#message.url#,
+		#message.picUrl#,
+		#message.status#,
+		#message.sendTime#,
+		#message.tryTimes#,
+		#message.agentId#,
+		#message.isSafe#,
+		#message.errorCode#,
+		#message.errorMsg#,
+		#message.messageType#,
+		#message.isMulti#,
+		#message.guid#,
+		#message.priority#
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE WeiXin_MessageQueue SET
+        <![CDATA[
+        `EmployeeId` = #message.employeeId#,
+		`Title` = #message.title#,
+		`Content` = #message.content#,
+		`Url` = #message.url#,
+		`PicUrl` = #message.picUrl#,
+		`Status` = #message.status#,
+		`SendTime` = #message.sendTime#,
+		`TryTimes` = #message.tryTimes#,
+		`AgentId` = #message.agentId#,
+		`IsSafe` = #message.isSafe#,
+		`ErrorCode` = #message.errorCode#,
+		`ErrorMsg` = #message.errorMsg#,
+		`MessageType` = #message.messageType#,
+		`IsMulti` = #message.isMulti#,
+		`Guid` = #message.guid#,
+		`UpdateTime` = NOW(),
+		`Priority` = #message.priority#
+        WHERE `Id` = #message.id#
+
+        ]]>
+    </update>
+
+    <select id="queryMessageFailed" resultClass="java.lang.String">
+		SELECT
+        <![CDATA[
+            distinct `Guid`
+        FROM WeiXin_MessageQueue
+        ]]>
+		WHERE `Status` = -1  Order By `Priority` ASC,`Id` ASC Limit 0,100
+	</select>
+
+    <select id="queryMessagesByGuid" resultClass="message">
+		SELECT
+        <![CDATA[
+            `Id`,
+            `AddTime`,
+            `UpdateTime`,
+            `EmployeeId`,
+            `Title`,
+            `Content`,
+            `Url`,
+            `PicUrl`,
+            `Status`,
+            `SendTime`,
+            `TryTimes`,
+            `AgentId`,
+            `IsSafe`,
+            `ErrorCode`,
+            `ErrorMsg`,
+            `MessageType`,
+            `IsMulti`,
+            `Guid`,
+            `Priority`
+        FROM WeiXin_MessageQueue
+        ]]>
+		WHERE `Guid` = #guid# AND `Status` = #status#
+	</select>
+
+
+    <update id="batchUpdate">
+		UPDATE WeiXin_MessageQueue SET
+        <![CDATA[
+		`Status` = #status#,
+		`SendTime` = #sendTime#,
+		`TryTimes` = #tryTimes#,
+		`ErrorCode` = #errcode#,
+		`ErrorMsg` = #errmsg#,
+		`UpdateTime` = NOW()
+        WHERE `Guid` = #guid#
+
+        ]]>
+    </update>
+</sqlMap>

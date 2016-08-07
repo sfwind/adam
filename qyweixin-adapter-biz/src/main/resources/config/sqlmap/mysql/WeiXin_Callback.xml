@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Callback">
+
+    <typeAlias alias="callback"
+               type="com.dianping.ba.es.qyweixin.adapter.biz.domain.oauth.Callback"/>
+
+    <resultMap id="callbackResult" class="callback">
+        <result column="Id" property="id" />
+        <result column="UUID" property="uuid" />
+        <result column="AgentID" property="agentId" />
+        <result column="CallbackURL" property="callbackURL" />
+        <result column="CallbackCode" property="callbackCode" />
+        <result column="AddTime" property="addTime" />
+        <result column="UpdateTime" property="updateTime" />
+        <result column="UserID" property="userId" />
+        <result column="InvalidTime" property="invalidTime" />
+    </resultMap>
+
+    <select id="queryByUUID"
+            resultMap="callbackResult">
+        SELECT
+        <![CDATA[
+            `Id`,
+            `UUID`,
+            `AgentID`,
+            `CallbackURL`,
+            `CallbackCode`,
+            `AddTime`,
+            `UpdateTime`,
+            `UserID`,
+            `InvalidTime`
+        FROM WeiXin_Callback
+        ]]>
+        WHERE `UUID` = #uuid#
+    </select>
+
+    <delete id="delete">
+        DELETE
+        FROM WeiXin_Callback
+        WHERE `UUID` = #uuid#
+    </delete>
+
+    <insert id="insert">
+        INSERT INTO WeiXin_Callback(
+        `UUID`,
+        `AgentID`,
+        `CallbackURL`,
+        `CallbackCode`,
+        `AddTime`,
+        `UpdateTime`,
+        `UserID`,
+        `InvalidTime`
+        ) VALUES (
+        #callback.uuid#,
+        #callback.agentId#,
+        #callback.callbackURL#,
+        #callback.callbackCode#,
+        NOW(),
+        NOW(),
+        #callback.userId#,
+        #callback.invalidTime#
+        )
+
+        <!-- 返回插入的ID, Avatar DAO 对应 return type 为 int-->
+        <selectKey resultClass="int" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id;
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterClass="java.util.HashMap">
+        UPDATE WeiXin_Callback SET
+        <![CDATA[
+        `AgentID` = #callback.agentId#,
+        `CallbackURL` = #callback.callbackURL#,
+        `CallbackCode` = #callback.callbackCode#,
+        `UpdateTime` = NOW(),
+        `UserID` = #callback.userId#,
+        `InvalidTime` = #callback.invalidTime#
+        WHERE `ID` = #callback.id#
+        ]]>
+
+    </update>
+
+</sqlMap>
