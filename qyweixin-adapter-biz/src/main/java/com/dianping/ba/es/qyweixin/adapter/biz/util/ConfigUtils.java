@@ -25,20 +25,20 @@ public class ConfigUtils {
 		return "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={appid}&secret={secret}";
 	}
 
-	public static String sendMessageUrl() {
-		return "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={access_token}";
-	}
-
 	public static String getOAuthCodeUrl() {
 		return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={appid}&redirect_uri={redirect_url}&response_type=code&scope=snsapi_base&state={state}#wechat_redirect";
 	}
 
 	public static String getUserInfoUrl() {
-		return "https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token={access_token}&code={code}&agentid={agentid}";
+		return "https://api.weixin.qq.com/cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN";
 	}
 
-	public static String getMediaFileUrl() {
-		return "https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token={access_token}&media_id={media_id}";
+	public static String getTemplateIdUrl(){
+		return "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token={access_token}";
+	}
+
+	public static String sendTemplateMessageUrl(){
+		return "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={access_token}";
 	}
 
 	public static String encode(String url) {

@@ -12,6 +12,13 @@ public class ErrorConstants {
     /** 没有权限操作 */
     public static final int NO_AUTHORITY = -2;
 
+    // -------------- 微信错误码 -----------------
+    public static final int ACCESS_TOKEN_EXPIRED = 42001;
+    public static final int ACCESS_TOKEN_EXPIRED_NEW = 40014;
+    public static final int USER_NO_EXIST = 46004;
+    public static final int API_FREQ_OUT_OF_LIMIT = 45009;
+    public static final int INVALID_CODE = 40029;
+
 
     // -------------- 错误消息 -----------------
     public static final String INTERNAL_ERROR_MSG = "内部错误，亲，烦请联系系统管理员！";

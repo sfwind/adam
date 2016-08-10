@@ -3,14 +3,12 @@ package com.dianping.ba.es.qyweixin.adapter.biz.domain.signature;
 import com.dianping.ba.es.qyweixin.adapter.biz.util.ConfigUtils;
 import com.dianping.ba.es.qyweixin.adapter.biz.util.RestfulHandler;
 import com.dianping.ba.es.qyweixin.adapter.biz.util.SHA1Helper;
-import okhttp3.ResponseBody;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -72,13 +70,7 @@ public class JsSignatureManagerImpl implements JsSignatureManager {
     }
 
     private void refreshJsApiTicket(String agentId) {
-        ResponseBody responseBody = restfulHandler.get(agentId, ConfigUtils.getJsTicketUrl(), new HashMap());
-        String jsapi_ticket = null;
-        try {
-            jsapi_ticket = responseBody.string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String jsapi_ticket = restfulHandler.get(ConfigUtils.getJsTicketUrl());
 
         jsApiMap.put(agentId, jsapi_ticket);
         jsApiMap.put(agentId+"_refreshTime", new Date().getTime());
@@ -96,7 +88,7 @@ public class JsSignatureManagerImpl implements JsSignatureManager {
         }
         String s = sb.toString();
         if (s.endsWith("&")) {
-            s = org.apache.commons.lang.StringUtils.substringBeforeLast(s, "&");
+            s = StringUtils.substringBeforeLast(s, "&");
         }
         return s;
     }
