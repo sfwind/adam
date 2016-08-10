@@ -31,7 +31,7 @@ public class WeixinMessageDaoTest extends TestBase {
         weixinMessage.setTryTimes(0);
         weixinMessage.setMulti(false);
         weixinMessage.setGuid(UUID.randomUUID().toString());
-        weixinMessage.setSendTime(DateUtil.convertDateToString(new Date()));
+        weixinMessage.setSendTime(DateUtil.parseDateToString(new Date()));
 
         weixinMessageDao.insert(weixinMessage);
     }
@@ -67,6 +67,6 @@ public class WeixinMessageDaoTest extends TestBase {
 
     @Test
     public void batchUpdateTest(){
-        weixinMessageDao.batchUpdate("12e1f8a0-ede5-4876-a0b1-ca6bd99ecc84", 1, 1, "0", null, DateUtil.convertDateToString(new Date()));
+        weixinMessageDao.batchUpdate("12e1f8a0-ede5-4876-a0b1-ca6bd99ecc84", 1, 1, "0", null, DateUtil.parseDateToString(new Date()));
     }
 }

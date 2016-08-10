@@ -4,7 +4,6 @@ import com.dianping.ba.es.qyweixin.adapter.biz.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -37,7 +36,7 @@ public class OAuthManagerImpl implements OAuthManager{
         callback.setAgentId(agentId);
         callback.setCallbackURL(callbackURL);
         if(validTime!=null){
-            callback.setInvalidTime(DateUtil.timeAfter(new Date(), Calendar.MINUTE, validTime));
+            callback.setInvalidTime(DateUtil.minuteAfter(new Date(), validTime));
         }
 
         callbackRepo.saveCallback(callback);
