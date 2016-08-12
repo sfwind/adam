@@ -1,7 +1,7 @@
 package com.dianping.ba.es.qyweixin.adapter.biz.domain.accessToken;
 
 
-public interface AccessTokenManager {
+public interface AccessTokenService {
     String getAccessToken();
 
     String refreshAccessToken();

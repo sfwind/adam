@@ -33,10 +33,6 @@ public class ConfigUtils {
 		return "https://api.weixin.qq.com/cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN";
 	}
 
-	public static String getTemplateIdUrl(){
-		return "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token={access_token}";
-	}
-
 	public static String sendTemplateMessageUrl(){
 		return "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={access_token}";
 	}

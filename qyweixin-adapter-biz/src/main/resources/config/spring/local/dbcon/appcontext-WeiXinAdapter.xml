@@ -5,9 +5,9 @@
                            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <bean id="dao.dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="jdbcUrl" value="jdbc:mysql://121.43.177.170:3306/mysql" />
-        <property name="user" value="betauser" />
-        <property name="password" value="user4beta" />
+        <property name="jdbcUrl" value="jdbc:mysql://121.43.177.170:3306/weixin" />
+        <property name="user" value="weixin" />
+        <property name="password" value="weixin4test" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
     </bean>
 
@@ -21,7 +21,7 @@
     <bean id="dao.sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dao.dataSource" />
         <property name="typeAliasesPackage"
-                  value="com.dianping.ba.base.elephant.adapter.biz.dao.po" />
+                  value="com.dianping.ba.es.qyweixin.adapter.biz.dao.po" />
         <!--<property name="plugins">-->
         <!--<array>-->
         <!--<bean class="com.github.pagehelper.PageHelper">-->

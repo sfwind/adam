@@ -17,7 +17,7 @@ public class TemplateMessage {
     private Map<String, Keyword> data = Maps.newHashMap();
 
     @Data
-    static class Keyword{
+    public static class Keyword{
         private String value;
         private String color;
     }

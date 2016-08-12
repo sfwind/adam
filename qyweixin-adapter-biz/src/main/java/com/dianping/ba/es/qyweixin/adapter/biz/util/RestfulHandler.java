@@ -1,6 +1,6 @@
 package com.dianping.ba.es.qyweixin.adapter.biz.util;
 
-import com.dianping.ba.es.qyweixin.adapter.biz.domain.accessToken.AccessTokenManager;
+import com.dianping.ba.es.qyweixin.adapter.biz.domain.accessToken.AccessTokenService;
 import okhttp3.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RestfulHandler {
     @Autowired
-    private AccessTokenManager accessTokenManager;
+    private AccessTokenService accessTokenService;
 
     private static OkHttpClient client = new OkHttpClient();
 
@@ -24,7 +24,7 @@ public class RestfulHandler {
 
     public String post(String requestUrl, String json) {
         if(StringUtils.isNotEmpty(requestUrl) && StringUtils.isNotEmpty(json)) {
-            String accessToken = accessTokenManager.getAccessToken();
+            String accessToken = accessTokenService.getAccessToken();
             String url = requestUrl.replace("{access_token}", accessToken);
             Request request = new Request.Builder()
                     .url(url)
@@ -48,7 +48,7 @@ public class RestfulHandler {
 
     public String get(String requestUrl) {
         if(StringUtils.isNotEmpty(requestUrl)) {
-            String accessToken = accessTokenManager.getAccessToken();
+            String accessToken = accessTokenService.getAccessToken();
             String url = requestUrl.replace("{access_token}", accessToken);
             Request request = new Request.Builder()
                     .url(url)

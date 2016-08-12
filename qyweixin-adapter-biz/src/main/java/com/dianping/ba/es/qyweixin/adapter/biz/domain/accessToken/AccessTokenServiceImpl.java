@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class AccessTokenManagerImpl implements AccessTokenManager {
+public class AccessTokenServiceImpl implements AccessTokenService {
     private static String accessToken;
-    protected static Logger logger = LoggerFactory.getLogger(AccessTokenManagerImpl.class);
+    protected static Logger logger = LoggerFactory.getLogger(AccessTokenService.class);
     @Autowired
     private QyWeiXinAccessTokenRepo qyWeiXinAccessTokenRepo;
 

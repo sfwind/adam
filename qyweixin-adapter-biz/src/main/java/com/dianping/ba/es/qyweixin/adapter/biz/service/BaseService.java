@@ -1,6 +1,6 @@
 package com.dianping.ba.es.qyweixin.adapter.biz.service;
 
-import com.dianping.ba.es.qyweixin.adapter.biz.domain.accessToken.AccessTokenManager;
+import com.dianping.ba.es.qyweixin.adapter.biz.domain.accessToken.AccessTokenService;
 import com.dianping.ba.es.qyweixin.adapter.biz.exception.ErrorConstants;
 import com.dianping.ba.es.qyweixin.adapter.biz.exception.QyWeixinAdaperException;
 import com.dianping.ba.es.qyweixin.adapter.biz.util.ConfigUtils;
@@ -23,7 +23,7 @@ public class BaseService {
     public static final int API_FREQ_OUT_OF_LIMIT = 45009;
     public static final int INVALID_CODE = 40029;
     @Autowired
-    private AccessTokenManager accessTokenManager;
+    private AccessTokenService accessTokenService;
 
     public static void validateResult(Map result) throws QyWeixinAdaperException {
         int errcode = getCode(result);
@@ -49,7 +49,7 @@ public class BaseService {
     public boolean isAccessTokenExpired(Map result, String agentId) {
         int errcode = getCode(result);
         if (errcode == ACCESS_TOKEN_EXPIRED || errcode == BaseService.ACCESS_TOKEN_EXPIRED_NEW) {
-            accessTokenManager.refreshAccessToken();
+            accessTokenService.refreshAccessToken();
             return true;
         }
         return false;

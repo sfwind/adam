@@ -50,7 +50,7 @@ public class CommonUtils {
         }
         Map<String, Object> gsonMap = jsonToMap(json);
         if(gsonMap.get("errcode")!=null && gsonMap.get("errmsg")!=null
-            && !gsonMap.get("errcode").equals(0) && !gsonMap.get("errcode").equals("0")){
+            && !gsonMap.get("errcode").equals(0.0) && !gsonMap.get("errcode").equals("0")){
             return true;
         }
         return false;
