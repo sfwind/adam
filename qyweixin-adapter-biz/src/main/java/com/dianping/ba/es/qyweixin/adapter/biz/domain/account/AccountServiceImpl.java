@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public Account getAccount(String openId) {
-        String url = ConfigUtils.getUserInfoUrl();
+        String url = USER_INFO_URL;
         Map<String, String> map = Maps.newHashMap();
         map.put("openid", openId);
         url = CommonUtils.urlReplace(url, map);

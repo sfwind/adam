@@ -20,7 +20,7 @@ public class QRCodeServiceImpl implements QRCodeService {
     public String generateQRCode(String scene, int expire_seconds) {
         QRRequest qrRequest = new QRRequest(scene, expire_seconds);
         String json = new Gson().toJson(qrRequest);
-        String body = restfulHandler.post(ConfigUtils.getQRCodeUrl(), json);
+        String body = restfulHandler.post(GEN_QRCODE_URL, json);
 
         Map<String, Object> result = CommonUtils.jsonToMap(body);
         return (String)result.get("url");

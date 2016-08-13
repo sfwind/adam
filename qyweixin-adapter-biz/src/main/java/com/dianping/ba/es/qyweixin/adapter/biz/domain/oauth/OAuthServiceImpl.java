@@ -29,7 +29,7 @@ public class OAuthServiceImpl implements OAuthService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public String redirectUrl(String callbackUrl) {
-        String requestUrl = ConfigUtils.getOAuthCodeUrl();
+        String requestUrl = OAUTH_URL;
         Callback callback = new Callback();
         callback.setCallbackUrl(callbackUrl);
         String state = UUID.randomUUID().toString().replaceAll("-", "");
@@ -63,7 +63,7 @@ public class OAuthServiceImpl implements OAuthService {
             logger.error("accessToken {} is invalid", accessToken);
             return null;
         }
-        String requestUrl = ConfigUtils.getRefreshTokenUrl();
+        String requestUrl = REFRESH_TOKEN_URL;
 
         Map<String,String> params = Maps.newHashMap();
         params.put("appid", ConfigUtils.getAppid());
@@ -84,7 +84,7 @@ public class OAuthServiceImpl implements OAuthService {
             logger.error("state {} is not found", state);
             return null;
         }
-        String requestUrl = ConfigUtils.getOauthAccessTokenUrl();
+        String requestUrl = ACCESS_TOKEN_URL;
 
         Map<String,String> params = Maps.newHashMap();
         params.put("appid", ConfigUtils.getAppid());

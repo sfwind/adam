@@ -19,7 +19,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
     private RestfulHandler restfulHandler;
 
     public boolean sendMessage(TemplateMessage templateMessage) {
-        String url = ConfigUtils.sendTemplateMessageUrl();
+        String url = SEND_MESSAGE_URL;
         String json = new Gson().toJson(templateMessage);
         String body = restfulHandler.post(url, json);
         // TODO 记录messageid
@@ -30,7 +30,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
         Map<String, String> map = Maps.newHashMap();
         map.put("template_id_short", templateShortId);
 
-        String url = ConfigUtils.sendTemplateMessageUrl();
+        String url = SEND_MESSAGE_URL;
         String json = new Gson().toJson(map);
         String body = restfulHandler.post(url, json);
         if(CommonUtils.isError(body)){

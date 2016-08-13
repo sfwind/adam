@@ -6,7 +6,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
 
-public class DateUtil {
+public class DateUtils {
     private static DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
     public static String parseDateToString(Date date) {
         return format.print(new DateTime(date));

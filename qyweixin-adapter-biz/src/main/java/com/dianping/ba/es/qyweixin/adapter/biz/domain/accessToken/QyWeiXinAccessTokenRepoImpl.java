@@ -24,7 +24,7 @@ public class QyWeiXinAccessTokenRepoImpl implements QyWeiXinAccessTokenRepo {
         Map<String, String> map = Maps.newHashMap();
         map.put("appid", ConfigUtils.getAppid());
         map.put("secret", ConfigUtils.getSecret());
-        String url = CommonUtils.urlReplace(ConfigUtils.getAccessTokenUrl(), map);
+        String url = CommonUtils.urlReplace(ACCESS_TOKEN_URL, map);
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -39,14 +39,10 @@ public class QyWeiXinAccessTokenRepoImpl implements QyWeiXinAccessTokenRepo {
                 return (String)gsonMap.get("access_token");
             }
         } catch (Exception e) {
-            logger.error("execute "+ConfigUtils.getAccessTokenUrl()+" error", e);
+            logger.error("execute "+url+" error", e);
         }
 
         return "";
-    }
-
-    public static void main(String[] args) {
-        new QyWeiXinAccessTokenRepoImpl().getAccessToken();
     }
 
 }
