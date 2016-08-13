@@ -41,8 +41,8 @@ public class ConfigUtils {
 		return "https://api.weixin.qq.com/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code";
 	}
 
-	public static String getOauthUserInfoUrl(){
-		return "https://api.weixin.qq.com/sns/userinfo?access_token={oauth_access_token}&openid={openid}&lang=zh_CN";
+	public static String getQRCodeUrl(){
+		return "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={access_token}";
 	}
 
 	public static String getUserInfoUrl() {

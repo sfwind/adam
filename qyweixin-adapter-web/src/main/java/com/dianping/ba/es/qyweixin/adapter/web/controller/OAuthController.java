@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,13 +21,13 @@ import java.util.Map;
 @RequestMapping("/oauth")
 @Controller
 public class OAuthController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OAuthController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private OAuthService oAuthService;
 
     @RequestMapping("/auth")
-    public void oauthCode(@RequestParam() String callbackUrl,
+    public void oauthCode(@RequestParam String callbackUrl,
                           HttpServletResponse response) {
         try {
             if (LOGGER.isDebugEnabled()) {
@@ -51,7 +52,7 @@ public class OAuthController {
 
     @RequestMapping("/code")
     public void oauthCode(@RequestParam(required=false) String code,
-                            @RequestParam() String state,
+                            @RequestParam String state,
                             HttpServletResponse response) {
         try {
             if (code == null) {
@@ -76,8 +77,8 @@ public class OAuthController {
         }
     }
 
-    @RequestMapping("/openid")
-    public ResponseEntity<Map<String, Object>> openid(@RequestParam() String accessToken) {
+    @RequestMapping("/openid/{access_token}")
+    public ResponseEntity<Map<String, Object>> openid(@PathVariable("access_token") String accessToken) {
         try {
             String openid = oAuthService.openId(accessToken);
             return WebUtils.result(openid);
@@ -87,8 +88,8 @@ public class OAuthController {
         return WebUtils.error("accessToken is expired");
     }
 
-    @RequestMapping("/refresh")
-    public ResponseEntity<Map<String, Object>> refresh(@RequestParam() String accessToken) {
+    @RequestMapping("/refresh/{access_token}")
+    public ResponseEntity<Map<String, Object>> refresh(@PathVariable("access_token") String accessToken) {
         try {
             String newAccessToken = oAuthService.refresh(accessToken);
             return WebUtils.result(newAccessToken);
