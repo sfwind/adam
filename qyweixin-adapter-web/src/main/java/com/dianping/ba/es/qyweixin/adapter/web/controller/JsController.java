@@ -1,4 +1,4 @@
-package com.dianping.ba.es.qyweixin.adapter.web.action;
+package com.dianping.ba.es.qyweixin.adapter.web.controller;
 
 import com.dianping.ba.es.qyweixin.adapter.biz.domain.signature.JsSignature;
 import com.dianping.ba.es.qyweixin.adapter.biz.domain.signature.JsSignatureManager;
@@ -16,8 +16,8 @@ import java.util.Date;
 /**
  * Created by yangyuchen on 8/14/14.
  */
-public class JsAction {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JsAction.class);
+public class JsController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JsController.class);
 
     @Autowired
     private JsSignatureManager jsSignatureManager;

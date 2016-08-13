@@ -1,4 +1,4 @@
-package com.dianping.ba.es.qyweixin.adapter.web.action;
+package com.dianping.ba.es.qyweixin.adapter.web.controller;
 
 
 import com.dianping.ba.es.qyweixin.adapter.biz.aes.Prpcrypt;
@@ -18,9 +18,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 @Controller
-public class CbAction {
+public class CbController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CbAction.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CbController.class);
     private static String INVALID_REQUEST = "invalid parameter!";
     private static String SUCCESS = "success";
 

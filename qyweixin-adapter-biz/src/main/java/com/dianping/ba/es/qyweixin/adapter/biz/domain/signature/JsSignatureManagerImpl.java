@@ -65,7 +65,7 @@ public class JsSignatureManagerImpl implements JsSignatureManager {
 //        System.out.println(varStr);
         String signature = SHA1Helper.getSHA1String(varStr);
 //        System.out.println(signature);
-        JsSignature jsSignature = new JsSignature(ConfigUtils.getCorpId(), timestamp, noncestr, signature);
+        JsSignature jsSignature = new JsSignature(ConfigUtils.getAppid(), timestamp, noncestr, signature);
         return jsSignature;
     }
 

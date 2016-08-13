@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -55,4 +56,13 @@ public class CommonUtils {
         }
         return false;
     }
+
+    public static String appendAccessToken(String url, String accessToken){
+        if(url.contains("?")){
+            return url+"&accessToken="+accessToken;
+        }else{
+            return url+"?accessToken="+accessToken;
+        }
+    }
+
 }

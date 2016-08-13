@@ -1,14 +1,14 @@
-<meta charset="UTF-8" />
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-<img  src="./image/busy.png">
-<span>系统繁忙 请稍后重试</span>
+<img  src="./image/403page.jpg">
+<span>报错啦</span>
 <style type="text/css">
     img {
         width: 400px;
-        height: 400px;
+        height: 450px;
         position: absolute;
-        top: 20%;
+        top: 10%;
         left: 50%;
         margin-left: -200px;
     }
@@ -21,7 +21,6 @@
         left: 50%;
         margin-left: -300px;
         text-align: center;
-        font-family: sans-serif;
     }
 
 </style>

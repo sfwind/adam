@@ -21,12 +21,28 @@ public class ConfigUtils {
 		return "548fd59826f6213f116f7325d1765108";
 	}
 
+	public static String getRedirectUrl(){
+		return "http://rxwfvrk8wo.proxy.qqbrowser.cc/oauth/code";
+	}
+
 	public static String getAccessTokenUrl() {
 		return "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={appid}&secret={secret}";
 	}
 
 	public static String getOAuthCodeUrl() {
 		return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={appid}&redirect_uri={redirect_url}&response_type=code&scope=snsapi_base&state={state}#wechat_redirect";
+	}
+
+	public static String getRefreshTokenUrl() {
+		return "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={appid}&grant_type=refresh_token&refresh_token={refresh_token}";
+	}
+
+	public static String getOauthAccessTokenUrl(){
+		return "https://api.weixin.qq.com/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code";
+	}
+
+	public static String getOauthUserInfoUrl(){
+		return "https://api.weixin.qq.com/sns/userinfo?access_token={oauth_access_token}&openid={openid}&lang=zh_CN";
 	}
 
 	public static String getUserInfoUrl() {
@@ -60,10 +76,6 @@ public class ConfigUtils {
 
 	public static boolean getBatchSendSwitch() {
 		return false;
-	}
-
-	public static String getCorpId() {
-		return null;
 	}
 
 	public static boolean getWhiteListSwitch() {

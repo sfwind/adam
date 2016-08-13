@@ -1,14 +1,14 @@
-<meta charset="UTF-8" />
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-<img  src="./image/403page.jpg">
-<span>请先关注企业微信号</span>
+<img  src="./image/busy.png">
+<span>系统繁忙 请稍后重试</span>
 <style type="text/css">
     img {
         width: 400px;
-        height: 450px;
+        height: 400px;
         position: absolute;
-        top: 10%;
+        top: 20%;
         left: 50%;
         margin-left: -200px;
     }
@@ -21,6 +21,7 @@
         left: 50%;
         margin-left: -300px;
         text-align: center;
+        font-family: sans-serif;
     }
 
 </style>

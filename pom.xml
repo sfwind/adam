@@ -21,7 +21,6 @@
     <modules>
         <module>qyweixin-adapter-biz</module>
         <module>qyweixin-adapter-web</module>
-        <module>qyweixin-adapter-job</module>
     </modules>
 
     <dependencyManagement>
