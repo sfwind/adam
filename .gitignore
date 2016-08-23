@@ -12,6 +12,7 @@ Servers/
 *.iws
 *.ipr
 *.ids
+localconfig.conf
 
 # Mac
 .DS_Store
