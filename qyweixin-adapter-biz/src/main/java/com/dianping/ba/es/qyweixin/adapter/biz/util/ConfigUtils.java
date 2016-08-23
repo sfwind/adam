@@ -37,6 +37,6 @@ public class ConfigUtils {
 	}
 
 	public static String getJsTicketUrl() {
-		return null;
+		return "";
 	}
 }
