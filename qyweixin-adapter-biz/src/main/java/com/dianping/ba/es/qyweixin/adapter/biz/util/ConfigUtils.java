@@ -1,9 +1,19 @@
 package com.dianping.ba.es.qyweixin.adapter.biz.util;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+
 public class ConfigUtils {
+	private static Config config;
+	private static Config localconfig;
+	static{
+		localconfig = ConfigFactory.load("localconfig");
+		config = ConfigFactory.load("adam");
+		config = localconfig.withFallback(config);
+	}
 
 	public static String getToken() {
-		return "dianpingqywx";
+		return config.getString("token");
 	}
 
 	public static String getEncodingAesKey() {
@@ -11,19 +21,19 @@ public class ConfigUtils {
 	}
 
 	public static String getAppid() {
-		return "wx063e8dd5f3d84210";
+		return config.getString("appid");
 	}
 
 	public static String getSecret() {
-		return "548fd59826f6213f116f7325d1765108";
+		return config.getString("secret");
 	}
 
 	public static String getRedirectUrl(){
-		return "http://rxwfvrk8wo.proxy.qqbrowser.cc/oauth/code";
+		return config.getString("redirectUrl");
 	}
 
 	public static int getJsSignatureInterval() {
-		return 1000;
+		return config.getInt("js.internal");
 	}
 
 	public static String getJsTicketUrl() {
